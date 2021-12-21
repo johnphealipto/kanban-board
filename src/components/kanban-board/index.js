@@ -65,22 +65,30 @@ const KanbanBoard = () => {
                           <h4>{stagesNames[i]}</h4>
                           <ul className="styled mt-50" data-testid={`stage-${i}`}>
                               {tasks.map((task, index) => {
-                                  return <li className="slide-up-fade-in" key={`${i}${index}`}>
-                                    <div className="li-content layout-row justify-content-between align-items-center">
-                                      <span data-testid={`${task.name.split(' ').join('-')}-name`}>{task.name}</span>
-                                      <div className="icons">
-                                        <button className="icon-only x-small mx-2" data-testid={`${task.name.split(' ').join('-')}-back`} onClick={(e) => handleArrowBackward(e, index)}>
-                                          <i className="material-icons">arrow_back</i>
-                                        </button>
-                                        <button className="icon-only x-small mx-2" data-testid={`${task.name.split(' ').join('-')}-forward`} onClick={(e) => handleArrowForward(e, index)}>
-                                          <i className="material-icons">arrow_forward</i>
-                                        </button>
-                                        <button className="icon-only danger x-small mx-2" data-testid={`${task.name.split(' ').join('-')}-delete`} onClick={(e) => handleDeleteTask(e, index)}>
-                                          <i className="material-icons">delete</i>
-                                        </button>
-                                      </div>
+                                return <li className="slide-up-fade-in" key={`${i}${index}`}>
+                                  <div className="li-content layout-row justify-content-between align-items-center">
+                                    <span data-testid={`${task.name.split(' ').join('-')}-name`}>{task.name}</span>
+                                    <div className="icons">
+                                      <button 
+                                        className="icon-only x-small mx-2" 
+                                        data-testid={`${task.name.split(' ').join('-')}-back`} 
+                                        onClick={(e) => handleArrowBackward(e, index)}
+                                        disabled={task.stage === 0 ? true : false}>
+                                        <i className="material-icons">arrow_back</i>
+                                      </button>
+                                      <button 
+                                        className="icon-only x-small mx-2" 
+                                        data-testid={`${task.name.split(' ').join('-')}-forward`} 
+                                        onClick={(e) => handleArrowForward(e, index)}
+                                        disabled={task.stage === 3 ? true : false}>
+                                        <i className="material-icons">arrow_forward</i>
+                                      </button>
+                                      <button className="icon-only danger x-small mx-2" data-testid={`${task.name.split(' ').join('-')}-delete`} onClick={(e) => handleDeleteTask(e, index)}>
+                                        <i className="material-icons">delete</i>
+                                      </button>
                                     </div>
-                                  </li>
+                                  </div>
+                                </li>
                               })}
                           </ul>
                       </div>
